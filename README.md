@@ -8,13 +8,61 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: black;
     color: white;
     text-align: center;
 }
 
-/* Neon Animated Title */
+/* Intro Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+/* Loading Text */
+.loading {
+    font-size: 30px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.3; }
+}
+
+/* Progress Bar */
+.bar {
+    width: 200px;
+    height: 10px;
+    background: #333;
+    margin-top: 20px;
+}
+
+.fill {
+    width: 0%;
+    height: 100%;
+    background: cyan;
+    animation: load 3s linear forwards;
+}
+
+@keyframes load {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Main Content */
+#main {
+    display: none;
+}
+
+/* Neon Title */
 h1 {
     font-size: 50px;
     margin-top: 100px;
@@ -22,54 +70,35 @@ h1 {
 }
 
 @keyframes glow {
-    0% { text-shadow: 0 0 10px red, 0 0 20px red; }
-    100% { text-shadow: 0 0 20px cyan, 0 0 40px cyan; }
-}
-
-/* Button Animation */
-.btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: cyan;
-    color: black;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: red;
-    color: white;
-    transform: scale(1.1);
-}
-
-/* Background Animation */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, red, blue, purple, cyan);
-    animation: move 10s linear infinite;
-    z-index: -1;
-    opacity: 0.2;
-}
-
-@keyframes move {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(-50%, -50%); }
+    0% { text-shadow: 0 0 10px red; }
+    100% { text-shadow: 0 0 20px cyan; }
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>🔥 RIYANSH OP GAMING 🔥</h1>
-<p>Welcome to My Gaming World 🎮</p>
+<!-- Intro Screen -->
+<div id="intro">
+    <div class="loading">Loading Riyansh Gaming...</div>
+    <div class="bar">
+        <div class="fill"></div>
+    </div>
+</div>
 
-<button class="btn">Subscribe</button>
+<!-- Main Website -->
+<div id="main">
+    <h1>🔥 RIYANSH OP GAMING 🔥</h1>
+    <p>Welcome to My Gaming World 🎮</p>
+</div>
+
+<script>
+// After 3 seconds hide intro
+setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}, 3000);
+</script>
 
 </body>
 </html>
